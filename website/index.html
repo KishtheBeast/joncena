@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <link rel="icon" type="image/x-icon" href="ticket-master/favicon.ico">
+    <meta name="viewport" content="user-scalable=0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="ticket-master/style.css">
+    <script>
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.type = 'text/css';
+        const timestamp = new Date().getTime();
+        const updatedCssUrl = `ticket-master/color.css?t=${timestamp}`;
+        linkElement.href = updatedCssUrl;
+        document.head.appendChild(linkElement);
+    </script>
+    <script>
+        function openPopup() {
+            document.getElementById('popupModal').style.display = 'block';
+        }
+    
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div class="container">
+        <div class="square">
+            <div class="square-text" id="pass_month_year" onclick="updateAdultCount()">
+                <span class="one-way-text">One Way</span><br>
+                <span class="adult-count-text">1 Adult</span>
+            </div>
+        </div>
+        <div class="qr-square">
+            <a href="#" onclick="openPopup(); return false;">
+                <img class="qr-code" src="ticket-master/your-qr-code-image.png" alt="QR Code">
+            </a>
+            <div class="tap-to-enlarge">Tap to enlarge</div>
+        </div>
+    </div>
+    <div class="bip">INTERSTATE</div>
+    <div class="rectangle">
+        <div class="rectangle-text1" onclick="updateZoneText()">2</div>
+        <div class="rectangle-text2">ZONE RIDE</div>
+    </div>
+    <div class="bottom-container">
+        <div class="datetime" id="datetime"></div>
+        <div class="color-strip">
+            <div class="color-block red"></div>
+            <div class="color-block green"></div>
+            <div class="color-block blue"></div>
+        </div>
+        <div class="expires-text">Expires in <span id="countdown"></span></div>
+        <img class="bottom-image" src="ticket-master/bottom.png" alt="Bottom Image">
+        
+        <div id="popupModal" style="position: fixed;top: 19%;left: 52%;transform: translate(-50%, -50%);width: 100%;background-color: rgb(255, 255, 255);border: 2px solid rgb(204, 204, 204);box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;padding: 20px 20px 20px 487px;height: 142%;display: none;">
+                <img onclick="closePopup()" src="ticket-master/your-qr-code-image.png" alt="QR Code" style="width: 50%;object-fit: contain;padding-top: 130%;margin-bottom: 65px;">
+                <a class="back-font">Tap to go back</a>
+        </div>
+    </div>
+    <script>
+        let adultCount = 1;
+        function updateMonthAndYear() {
+            document.getElementById("pass_month_year").innerHTML = `<span class='one-way-text'>One Way</span><br><span class='adult-count-text'>${adultCount} Adult${adultCount > 1 ? 's' : ''}</span>`;
+        }
+
+        let deadlineDate = null;
+        function updateCountdown() {
+            const countdown = document.getElementById('countdown');
+            if (!deadlineDate) {
+                // Set deadline to 1 hour from initial page load
+                deadlineDate = new Date(Date.now() + 60 * 60 * 1000);
+            }
+            const now = new Date();
+            const diff = deadlineDate - now;
+            if (diff <= 0) {
+                countdown.textContent = "00:00:00";
+                return;
+            }
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            countdown.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateDateTime() {
+            const datetime = document.getElementById('datetime');
+            const currentDate = new Date();
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const dateOptions = {
+                weekday: 'long',
+                month: 'long',
+                day: '2-digit',
+                year: 'numeric'
+            };
+            const timeString = currentDate.toLocaleTimeString('en-US', timeOptions).toUpperCase();
+            const dateString = currentDate.toLocaleDateString('en-US', dateOptions);
+            datetime.innerHTML = `${timeString}<br>${dateString}`;
+        }
+
+        function updateZoneText() {
+            const zoneElement = document.querySelector('.rectangle-text1');
+            let currentZone = parseInt(zoneElement.textContent, 10);
+            currentZone = currentZone === 11 ? 2 : currentZone + 1;
+            zoneElement.textContent = currentZone;
+        }
+
+        function updateAdultCount() {
+            adultCount = adultCount === 2 ? 1 : adultCount + 1;
+            updateMonthAndYear();
+        }
+
+        updateMonthAndYear();
+        updateCountdown();
+        updateDateTime();
+        setInterval(updateCountdown, 1000);
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
