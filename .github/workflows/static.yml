@@ -31,15 +31,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Enable GitHub Pages (main branch, root path)
-        run: |
-          REPO=$(echo "$GITHUB_REPOSITORY")
-          echo "Re-enabling GitHub Pages for $REPO (source: main branch, root path)..."
-          gh api -X POST repos/$REPO/pages --field 'source[branch]=main' --field 'source[path]=/'
-          if [ $? -eq 0 ]; then
-            echo "GitHub Pages re-enabled for GitHub Actions (main branch, root path)."
-          else
-            echo "Failed to re-enable GitHub Pages. You may need to enable it manually in repository settings."
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
