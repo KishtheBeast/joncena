@@ -15,7 +15,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -47,6 +47,8 @@ jobs:
           fi
           mv ticket-master/color.css.new ticket-master/color.css
       - name: Commit and push updated color.css if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if git diff --exit-code ticket-master/color.css; then
             echo "No changes to commit."
@@ -56,7 +58,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add ticket-master/color.css
           git commit -m "Update color.css"
-          git push origin main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
