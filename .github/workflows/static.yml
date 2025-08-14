@@ -9,6 +9,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Scheduled runs every Wednesday and Thursday at 6am EDT (which is 10am UTC)
+  schedule:
+    - cron: '0 10 * * 3,4'
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -31,6 +35,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Download color.css from Amar-louis/ticket-master
+        run: |
+          curl -o ticket-master/color.css.new https://raw.githubusercontent.com/Amar-louis/ticket-master/main/color.css
+          if [ -f ticket-master/color.css ]; then
+            if cmp -s ticket-master/color.css ticket-master/color.css.new; then
+              echo "No changes in color.css. Skipping commit."
+              mv ticket-master/color.css.new ticket-master/color.css # Clean up
+              exit 0
+            fi
+          fi
+          mv ticket-master/color.css.new ticket-master/color.css
+      - name: Commit and push updated color.css if changed
+        run: |
+          if git diff --exit-code ticket-master/color.css; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add ticket-master/color.css
+          git commit -m "Update color.css"
+          git push origin main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
