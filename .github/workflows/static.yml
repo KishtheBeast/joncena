@@ -9,9 +9,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Scheduled runs every Wednesday and Thursday at 6am EDT (which is 10am UTC)
+  # Scheduled runs every Wednesday and Thursday at 6am, 7am, 7:30am, and 8:10am EDT (which is 10am, 11am, 11:30am, and 12:10pm UTC)
   schedule:
     - cron: '0 10 * * 3,4'
+    - cron: '0 11 * * 3,4'
+    - cron: '30 11 * * 3,4'
+    - cron: '10 12 * * 3,4'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
