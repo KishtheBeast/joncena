@@ -52,16 +52,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --exit-code ticket-master/color.css; then
-            echo "No changes to commit."
-            exit 0
-          fi
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
           git add ticket-master/color.css
-          git commit -m "Update color.css"
-          git pull --rebase --autostash https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
-          git push --force-with-lease https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
+          git commit -m "Update color.css" || echo "No changes to commit."
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
