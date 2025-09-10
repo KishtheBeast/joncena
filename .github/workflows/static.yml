@@ -9,12 +9,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Scheduled runs every Wednesday and Thursday at 6am, 7am, 7:30am, 8:10am UTC, and every minute from 6:50 to 7:15am UTC
+  # Scheduled runs every Wednesday and Thursday at 6am, 7am, 7:30am, 8:10am, 4pm UTC, and every minute from 6:50 to 7:15am UTC
   schedule:
     - cron: '0 6 * * 3,4'
     - cron: '0 7 * * 3,4'
     - cron: '30 7 * * 3,4'
     - cron: '10 8 * * 3,4'
+    - cron: '0 16 * * 3,4'      # 4pm UTC Wednesday and Thursday
     - cron: '50-59 6 * * 3,4'
     - cron: '0-15 7 * * 3,4'
 
