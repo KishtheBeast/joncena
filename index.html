@@ -28,22 +28,22 @@
     </script>
 </head>
 <body style="margin: 0;">
-    <div style="text-align:center; margin-top: 20px; font-size: 28px; font-weight: bold;">One Way Ticket</div>
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
-        <div style="border-radius: 30px; border: 23px solid var(--first); display: inline-block; padding: 10px; margin-bottom: 20px;">
-            <img class="qr-code" src="ticket-master/your-qr-code-image.png" alt="QR Code" style="width: 320px; height: 320px;">
+    <div style="text-align:center; margin-top: 60px; font-size: 43px; font-weight: bold;">One Way Ticket</div>
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+        <div style="border-radius: 30px; border: 35px solid var(--first); display: inline-block; padding: 10px; margin-bottom: 20px;">
+            <img class="qr-code" src="ticket-master/your-qr-code-image.png" alt="QR Code" style="width: 600px; height: 600px;">
+        </div>
+        <div class="ticket-info-rect" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <div style="text-align:center; font-size: 64px; font-weight: bold; margin-top: 10px; color: #F44;">INTRASTATE</div>
+            <div style="text-align:center; font-size: 190px; font-weight: 400; margin-top: 0px; cursor: pointer;" id="zone-number">11</div>
+            <div style="text-align:center; font-size: 50px; font-weight: 100; margin-top: 0px;">ZONE RIDE</div>
+            <div style="text-align:center; font-size: 40px; font-weight: 0; margin-top: 0px; margin-bottom: 290px;">1 Adult</div>
         </div>
     </div>
-    <div style="text-align:center; font-size: 48px; font-weight: bold; margin-top: 10px;">INTRASTATE</div>
     
-    <!-- Added cursor: pointer style here -->
-    <div style="text-align:center; font-size: 90px; font-weight: bold; margin-top: 0px; cursor: pointer;" id="zone-number">11</div>
-    
-    <div style="text-align:center; font-size: 32px; font-weight: 500; margin-top: 0px;">ZONE RIDE</div>
-    <div style="text-align:center; font-size: 28px; font-weight: 400; margin-top: 0px; margin-bottom: 38px;">1 Adult</div>
     <div style="flex: 1;"></div>
-    <div style="width: 100%; position: fixed; left: 0; bottom: 0; background: #fff; z-index: 10; box-shadow: 0 -2px 16px rgba(0,0,0,0.04); padding-bottom: 0;">
-        <div class="color-strip" style="margin-top: 0; margin-bottom: 0; height: 30px;">
+    <div style="width: 100%; position: fixed; left: 0; bottom: 100; background: #fff; z-index: 10; box-shadow: 0 -2px 16px rgba(0,0,0,0.04); padding-bottom: 0;">
+        <div class="color-strip" style="margin-top: 0; margin-bottom: 20px; height: 30px;">
             <div class="color-block" style="background: var(--stripone); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--striptwo); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--stripthree); width: 33.33%; height: 100%; border-radius: 0;"></div>
@@ -53,11 +53,11 @@
                 <div style="width: 8%; height: 100%; background: #0094FF; border-radius: 2px;"></div>
             </div>
         </div>
-        <div style="text-align:center; font-size: 38px; font-weight: bold; margin-top: 18px;">
+        <div style="text-align:center; font-size: 60px; font-weight: bold; margin-top: 18px;">
             Expires in <span id="countdown">30:00</span>
         </div>
         <div style="display: flex; justify-content: center; margin-top: 30px;">
-            <button style="background: #003E65; color: white; font-size: 28px; border: none; border-radius: 12px; padding: 18px 38px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 500; cursor: pointer;">&lt; Back to ticket</button>
+            <button style="background: #003E65; color: white; font-size: 28px; border: none; border-radius: 12px; padding: 32px 70px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 500; cursor: pointer;">&lt; Back to ticket</button>
         </div>
     </div>
     <div id="popupModal" style="position: fixed;top: 19%;left: 52%;transform: translate(-50%, -50%);width: 100%;background-color: rgb(255, 255, 255);border: 2px solid rgb(204, 204, 204);box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;padding: 20px 20px 20px 487px;height: 142%;display: none;">
