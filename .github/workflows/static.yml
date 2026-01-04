@@ -9,15 +9,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Scheduled runs every Wednesday and Thursday at 6am, 7am, 7:30am, 8:10am, 4pm UTC, and every minute from 6:50 to 7:15am UTC
+  # Scheduled runs every day at 6am, 7am, 7:30am, 8:10am, 4pm UTC, and every 5 minutes from 11:00 to 12:55 UTC and 13:00 to 13:55 UTC
   schedule:
-    - cron: '0 6 * * 3,4'
-    - cron: '0 7 * * 3,4'
-    - cron: '30 7 * * 3,4'
-    - cron: '10 8 * * 3,4'
-    - cron: '0 16 * * 3,4'      # 4pm UTC Wednesday and Thursday
-    - cron: '*/5 11-12 * * 3,4'   # 6:00-7:55am EST (11:00-12:55 UTC) Wed/Thu
-    - cron: '0-55/5 13 * * 3,4'   # 8:00-8:55am EST (13:00-13:55 UTC) Wed/Thu
+    - cron: '0 6 * * *'
+    - cron: '0 7 * * *'
+    - cron: '30 7 * * *'
+    - cron: '10 8 * * *'
+    - cron: '0 16 * * *'      # 4pm UTC every day
+    - cron: '*/5 11-12 * * *'   # 11:00-12:55 UTC every day
+    - cron: '0-55/5 13 * * *'   # 13:00-13:55 UTC every day
 
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
