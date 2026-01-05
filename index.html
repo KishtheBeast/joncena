@@ -108,38 +108,26 @@
         setInterval(updateDateTime, 1000);
 
         // --- 30-minute countdown logic ---
-        function getOrSetDeadline() {
-            // Check if a deadline is already stored
-            const stored = localStorage.getItem('ticket_deadline');
-            if (stored) {
-                return new Date(stored);
-            }
-            
-            // If not, create a new one
+        function setDeadline() {
             const now = new Date();
-            const deadlineDate = new Date(now.getTime() + 30 * 60 * 1000); // 30 minutes from now
-            localStorage.setItem('ticket_deadline', deadlineDate.toISOString());
-            return deadlineDate;
+            window.deadlineDate = new Date(now.getTime() + 30 * 60 * 1000); // 30 minutes from now
         }
 
         function updateCountdown() {
             const countdown = document.getElementById('countdown');
             if (!countdown) return;
 
-            const deadline = getOrSetDeadline();
+            if (!window.deadlineDate) setDeadline();
             const now = new Date();
-            let diff = Math.max(0, deadline - now);
-            
+            let diff = Math.max(0, window.deadlineDate - now);
             const minutes = Math.floor(diff / 60000);
             const seconds = Math.floor((diff % 60000) / 1000);
-            
             countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
             if (diff <= 0) {
                 countdown.textContent = '00:00';
-                localStorage.removeItem('ticket_deadline');
             }
         }
+        setDeadline();
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
