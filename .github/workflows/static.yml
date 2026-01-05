@@ -45,26 +45,6 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-      - name: Download color.css from Amar-louis/ticket-master
-        run: |
-          curl -o ticket-master/color.css.new https://raw.githubusercontent.com/Amar-louis/ticket-master/main/color.css
-          if [ -f ticket-master/color.css ]; then
-            if cmp -s ticket-master/color.css ticket-master/color.css.new; then
-              echo "No changes in color.css. Skipping commit."
-              mv ticket-master/color.css.new ticket-master/color.css # Clean up
-              exit 0
-            fi
-          fi
-          mv ticket-master/color.css.new ticket-master/color.css
-      - name: Commit and push updated color.css if changed
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add ticket-master/color.css
-          git commit -m "Update color.css" || echo "No changes to commit."
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
