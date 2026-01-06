@@ -1,6 +1,6 @@
 :root {
-        --first: #aba4a5;
-        --stripone: #c2ffa8;
-        --striptwo: #1a861c;
-        --stripthree: #cf6625;
-    }
+    --first: #ffe600; /* yellow */
+    --stripone: #800080; /* purple */
+    --striptwo: #4b2e05; /* dark brown */
+    --stripthree: #90ee90; /* light green */
+}
