@@ -44,14 +44,15 @@
 
     <div style="flex: 1;"></div>
     <div style="width: 100%; position: fixed; left: 0; bottom: 100; background: #fff; z-index: 10; box-shadow: 0 -2px 16px rgba(0,0,0,0.04); padding-bottom: 0;">
-        <div class="color-strip" style="margin-top: 0; margin-bottom: 20px; height: 30px;">
+        <div class="color-strip" style="margin: 0 auto 20px auto; height: 44px; width: 750px; display: flex;">
             <div class="color-block" style="background: var(--stripone); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--striptwo); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--stripthree); width: 33.33%; height: 100%; border-radius: 0;"></div>
-      </div>
-        <div style="width: 90%; margin: 0 auto; margin-top: 8px;">
-            <div style="height: 4px; background: #E5E5E5; border-radius: 2px; position: relative;">
-                <div style="width: 8%; height: 100%; background: #0094FF; border-radius: 2px;"></div>
+        </div>
+
+        <div style="width: 670px; margin: 0 auto; margin-top: 8px;">
+            <div style="height: 4px; background: #E5E5E5; border-radius: 2px; position: relative; overflow: hidden;">
+                <div id="progress-bar" style="width: 0%; height: 100%; background: #0094FF; border-radius: 2px; transition: width 1s linear;"></div>
             </div>
         </div>
         <div style="text-align:center; font-size: 60px; font-weight: bold; margin-top: 18px;">
@@ -115,6 +116,7 @@
 
         function updateCountdown() {
             const countdown = document.getElementById('countdown');
+            const progressBar = document.getElementById('progress-bar');
             if (!countdown) return;
 
             if (!window.deadlineDate) setDeadline();
@@ -125,6 +127,13 @@
             countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             if (diff <= 0) {
                 countdown.textContent = '00:00';
+            }
+            // Progress bar logic (fill as time goes on)
+            if (progressBar) {
+                const total = 60 * 60 * 1000; // 60 minutes in ms
+                const elapsed = total - diff;
+                const percent = Math.min(1, Math.max(0, elapsed / total));
+                progressBar.style.width = `${percent * 100}%`;
             }
         }
         setDeadline();
