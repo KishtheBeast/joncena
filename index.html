@@ -28,10 +28,10 @@
     </script>
 </head>
 <body style="margin: 0;">
-    <div style="text-align:center; margin-top: 60px; font-size: 35px; font-weight: bold;">One Way Ticket</div>
+    <div style="text-align:center; margin-top: 60px; font-size: 40px; font-weight: 200;">One Way Ticket</div>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
         <div style="border-radius: 30px; border: 35px solid var(--first); display: inline-block; padding: 20px; margin-bottom: 20px;">
-            <img class="qr-code" src="ticket-master/your-qr-code-image.png" alt="QR Code" style="width: 600px; height: 600px;">
+            <img class="qr-code" src="ticket-master/your-qr-code-image.png" alt="QR Code" style="width: 520px; height: 520px;">
         </div>
         <div style="width: 690px; height: 0; border-bottom: 4px dashed #e4e4e4; margin-bottom: 40px;"></div>
         <div class="ticket-info-rect" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
@@ -58,7 +58,7 @@
             Expires in <span id="countdown">60:00</span>
         </div>
         <div style="display: flex; justify-content: center; margin-top: 30px;">
-            <button style="background: #003E65; color: white; font-size: 28px; border: none; border-radius: 12px; padding: 32px 70px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 500; cursor: pointer;">&lt;&nbsp; Back to ticket</button>
+            <button style="background: #003E65; color: white; font-size: 35px; border: none; border-radius: 20px; padding: 40px 100px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 500; cursor: pointer;">&lt;&nbsp; Back to ticket</button>
         </div>
     </div>
     <div id="popupModal" style="position: fixed;top: 19%;left: 52%;transform: translate(-50%, -50%);width: 100%;background-color: rgb(255, 255, 255);border: 2px solid rgb(204, 204, 204);box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;padding: 20px 20px 20px 487px;height: 142%;display: none;">
@@ -107,10 +107,10 @@
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
-        // --- 30-minute countdown logic ---
+        // --- 60-minute countdown logic ---
         function setDeadline() {
             const now = new Date();
-            window.deadlineDate = new Date(now.getTime() + 30 * 60 * 1000); // 30 minutes from now
+            window.deadlineDate = new Date(now.getTime() + 60 * 60 * 1000); // 60 minutes from now
         }
 
         function updateCountdown() {
