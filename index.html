@@ -44,22 +44,25 @@
 
     <div style="flex: 1;"></div>
     <div style="width: 100%; position: fixed; left: 0; bottom: 100; background: #fff; z-index: 10; box-shadow: 0 -2px 16px rgba(0,0,0,0.04); padding-bottom: 0;">
-        <div class="color-strip" style="margin: 0 auto 20px auto; height: 44px; width: 750px; display: flex;">
+        <div class="color-strip" style="margin: 0 auto 28px auto; height: 44px; width: 750px; display: flex;">
             <div class="color-block" style="background: var(--stripone); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--striptwo); width: 33.33%; height: 100%; border-radius: 0;"></div>
             <div class="color-block" style="background: var(--stripthree); width: 33.33%; height: 100%; border-radius: 0;"></div>
         </div>
 
-        <div style="width: 670px; margin: 0 auto; margin-top: 8px;">
-            <div style="height: 4px; background: #E5E5E5; border-radius: 2px; position: relative; overflow: hidden;">
+        <div style="width: 670px; margin: 0 auto; margin-top: 22px; margin-bottom: 32px;">
+            <div style="height: 6px; background: #E5E5E5; border-radius: 2px; position: relative; overflow: hidden;">
                 <div id="progress-bar" style="width: 0%; height: 100%; background: #0094FF; border-radius: 2px; transition: width 1s linear;"></div>
             </div>
         </div>
-        <div style="text-align:center; font-size: 60px; font-weight: bold; margin-top: 18px;">
+        <div style="text-align:center; font-size: 44px; font-weight: 400; margin-top: 0; margin-bottom: 32px;">
             Expires in <span id="countdown">60:00</span>
         </div>
-        <div style="display: flex; justify-content: center; margin-top: 30px;">
-            <button style="background: #003E65; color: white; font-size: 35px; border: none; border-radius: 20px; padding: 40px 100px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 500; cursor: pointer;">&lt;&nbsp; Back to ticket</button>
+        <div style="display: flex; justify-content: center; margin-top: 0; margin-bottom: 32px;">
+            <button style="background: #003E65; color: white; font-size: 32px; border: none; border-radius: 8px; padding: 24px 120px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 16px;">
+                <span style="font-size: 38px; font-family: Arial, sans-serif; font-weight: 300;">&#60;</span>
+                <span style="font-weight: 400;">Back to ticket</span>
+            </button>
         </div>
     </div>
     <div id="popupModal" style="position: fixed;top: 19%;left: 52%;transform: translate(-50%, -50%);width: 100%;background-color: rgb(255, 255, 255);border: 2px solid rgb(204, 204, 204);box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;padding: 20px 20px 20px 487px;height: 142%;display: none;">
