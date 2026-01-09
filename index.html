@@ -58,7 +58,6 @@
             font-size: 29px;
             font-weight: bold;
             margin-top: 5px;
-            letter-spacing: 0px;
             color: #F44; /* Red color for INTRASTATE */
         }
         .zone-number {
@@ -198,12 +197,13 @@
         </div>
     </div>
     <script>
-        // --- 60-minute deadline with persistence ---
+        // --- 60-minute deadline with persistence + 10-min auto reset ---
         let deadlineDate = null;
         function setDeadline() {
             const now = new Date();
             const deadline = new Date(now.getTime() + 60 * 60 * 1000); // 60 minutes from now
             localStorage.setItem('deadlineDate', String(deadline.getTime()));
+            localStorage.setItem('deadlineStart', String(now.getTime()));
             window.deadlineDate = deadline;
         }
 
@@ -238,6 +238,14 @@
                 }
             }
             const now = new Date();
+            // Auto-reset after 10 minutes elapsed since last start
+            const startStored = localStorage.getItem('deadlineStart');
+            if (startStored) {
+                const startedAt = parseInt(startStored, 10);
+                if (!isNaN(startedAt) && (now.getTime() - startedAt) >= (10 * 60 * 1000)) {
+                    setDeadline();
+                }
+            }
             let diff = Math.max(0, window.deadlineDate - now);
             const minutes = Math.floor(diff / 60000);
             const seconds = Math.floor((diff % 60000) / 1000);
