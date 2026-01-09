@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Way Ticket</title>
     <link rel="stylesheet" href="ticket-master/style.css">
-    <link rel="stylesheet" href="ticket-master/color.css">
+    <script>
+        // Load color.css with a cache-busting timestamp to ensure updates apply
+        (function() {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = `ticket-master/color.css?t=${Date.now()}`;
+            document.head.appendChild(link);
+        })();
+    </script>
     <style>
         body { background: #2196F3; margin: 0; font-family: 'SF Pro Display Medium', Arial, sans-serif; }
         .main-bg {
