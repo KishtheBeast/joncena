@@ -59,8 +59,8 @@
             Expires in <span id="countdown">60:00</span>
         </div>
         <div style="display: flex; justify-content: center; margin-top: 0; margin-bottom: 32px;">
-            <button style="background: #003E65; color: white; font-size: 32px; border: none; border-radius: 8px; padding: 24px 120px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 16px;">
-                <span style="font-size: 38px; font-family: Arial, sans-serif; font-weight: 300;">&#60;</span>
+            <button id="back-to-ticket-btn" style="background: #003E65; color: white; font-size: 32px; border: none; border-radius: 8px; padding: 24px 120px; font-family: 'SF Pro Display Medium', sans-serif; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 16px;">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;"><path d="M25 33L13 19L25 5" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span style="font-weight: 400;">Back to ticket</span>
             </button>
         </div>
@@ -150,6 +150,13 @@
                 let currentZone = parseInt(zoneNumberDiv.textContent, 10);
                 currentZone = currentZone >= 11 ? 1 : currentZone + 1;
                 zoneNumberDiv.textContent = currentZone;
+            });
+        }
+        // --- Back to ticket button logic ---
+        const backBtn = document.getElementById('back-to-ticket-btn');
+        if (backBtn) {
+            backBtn.addEventListener('click', function() {
+                window.location.href = 'ticket-details.html';
             });
         }
     </script>

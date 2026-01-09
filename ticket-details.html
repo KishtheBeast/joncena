@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Way Ticket</title>
+    <link rel="stylesheet" href="ticket-master/style.css">
+    <link rel="stylesheet" href="ticket-master/color.css">
+    <style>
+        body { background: #2196F3; margin: 0; font-family: 'SF Pro Display Medium', Arial, sans-serif; }
+        .main-bg {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #2196F3 0%, #2196F3 36%, #fff 36%, #fff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .ticket-container {
+            background: #fff;
+            border-radius: 32px;
+            margin-top: 0;
+            margin-bottom: 0;
+            max-width: 400px;
+            width: 89vw;
+            min-height: 69vh;
+            box-shadow: 0 20px 32px rgba(0,0,0,0.08);
+            padding: 0 0 32px 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .qr-border {
+            background: #f8f8f8;
+            border-radius: 24px;
+            border: 12px solid var(--first);
+            width: 160px;
+            height: 160px;
+            margin: 22px auto 5px auto; /* Increased top and bottom margin for more white gap */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qr-border img {
+            width: 150px;
+            height: 150px;
+        }
+        .tap-enlarge {
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 8px; /* Add more space below 'Tap to enlarge' */
+            cursor: pointer;
+        }
+        .ticket-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            color: #E53935; /* Red color for INTRASTATE */
+        }
+        .zone-number {
+            text-align: center;
+            font-size: 75px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .zone-ride {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .zone-dis {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 160px;
+        }
+        .color-strip {
+            display: flex;
+            width: 90%;
+            margin: 0 auto 12px auto;
+            height: 18px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .color-block { flex: 1; }
+        .progress-bar-bg {
+            width: 90%;
+            margin: 0 auto;
+            height: 6px;
+            background: #E5E5E5;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #0094FF;
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+        .expires {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 18px 0 0 0;
+        }
+        .validator-link {
+            display: block;
+            text-align: center;
+            color: #003E65;
+            font-size: 12px;
+            margin-top: 18px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .header-bar {
+            background: transparent;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            padding: 32px 0 0 0;
+            letter-spacing: 0.5px;
+            position: relative;
+            height: 56px;
+        }
+        .header-title {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 5.4;
+        }
+        .back-arrow {
+            position: absolute;
+            left: 18px;
+            top: 32px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            line-height: 1;
+            font-family: 'SF Pro Display Medium', Arial, sans-serif;
+            font-weight: bold;
+            /* Use a more iOS-like arrow */
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-arrow svg {
+            display: block;
+            width: 28px;
+            height: 28px;
+        }
+        @media (max-width: 600px) {
+            .ticket-container { max-width: 98vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-bg">
+        <div style="background:#2196F3; width:100%; border-top-left-radius:32px; border-top-right-radius:32px;">
+            <div class="header-bar" style="background:transparent;">
+                <span class="back-arrow" onclick="window.location.href='index.html'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </span>
+                <span class="header-title">One Way Ticket</span>
+            </div>
+        </div>
+        <div class="ticket-container">
+            <div class="qr-border">
+                <img src="ticket-master/your-qr-code-image.png" alt="QR Code">
+            </div>
+            <div class="tap-enlarge" onclick="window.location.href='index.html'">Tap to enlarge</div>
+            <hr style="border: none; border-top: 2px dashed #D3D3D3; width: 80%; margin: 0 auto 2px auto;">
+            <div class="ticket-title">INTRASTATE</div>
+            <div class="zone-number">11</div>
+            <div class="zone-ride">ZONE RIDE</div>
+            <div class="zone-dis">1 Adult</div>
+            <div class="color-strip">
+                <div class="color-block" style="background: var(--stripone);"></div>
+                <div class="color-block" style="background: var(--striptwo);"></div>
+                <div class="color-block" style="background: var(--stripthree);"></div>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="expires">Expires in <span id="countdown">60:00</span></div>
+            <a class="validator-link" href="#">View Onboard Validator Instructions</a>
+        </div>
+    </div>
+    <script>
+        // --- 60-minute countdown logic ---
+        let deadlineDate = null;
+        function setDeadline() {
+            const now = new Date();
+            window.deadlineDate = new Date(now.getTime() + 60 * 60 * 1000); // 60 minutes from now
+        }
+        function updateCountdown() {
+            const countdown = document.getElementById('countdown');
+            const progressBar = document.getElementById('progress-bar');
+            if (!countdown) return;
+            if (!window.deadlineDate) setDeadline();
+            const now = new Date();
+            let diff = Math.max(0, window.deadlineDate - now);
+            const minutes = Math.floor(diff / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (diff <= 0) {
+                countdown.textContent = '00:00';
+            }
+            // Progress bar logic (fill as time goes on)
+            if (progressBar) {
+                const total = 60 * 60 * 1000; // 60 minutes in ms
+                const elapsed = total - diff;
+                const percent = Math.min(1, Math.max(0, elapsed / total));
+                progressBar.style.width = `${percent * 100}%`;
+            }
+        }
+        setDeadline();
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
