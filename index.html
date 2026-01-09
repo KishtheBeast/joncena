@@ -198,17 +198,45 @@
         </div>
     </div>
     <script>
-        // --- 60-minute countdown logic ---
+        // --- 60-minute deadline with persistence ---
         let deadlineDate = null;
         function setDeadline() {
             const now = new Date();
-            window.deadlineDate = new Date(now.getTime() + 60 * 60 * 1000); // 60 minutes from now
+            const deadline = new Date(now.getTime() + 60 * 60 * 1000); // 60 minutes from now
+            localStorage.setItem('deadlineDate', String(deadline.getTime()));
+            window.deadlineDate = deadline;
         }
+
+        function initDeadline() {
+            let navType = 'navigate';
+            const entries = performance.getEntriesByType && performance.getEntriesByType('navigation');
+            if (entries && entries.length > 0) {
+                navType = entries[0].type; // 'navigate' | 'reload' | 'back_forward'
+            }
+            const stored = localStorage.getItem('deadlineDate');
+            if (navType === 'reload') {
+                // Reset only on hard refresh of index
+                setDeadline();
+            } else if (stored) {
+                window.deadlineDate = new Date(parseInt(stored, 10));
+            } else {
+                // First visit: initialize deadline
+                setDeadline();
+            }
+        }
+
         function updateCountdown() {
             const countdown = document.getElementById('countdown');
             const progressBar = document.getElementById('progress-bar');
             if (!countdown) return;
-            if (!window.deadlineDate) setDeadline();
+            if (!window.deadlineDate) {
+                const stored = localStorage.getItem('deadlineDate');
+                if (stored) {
+                    window.deadlineDate = new Date(parseInt(stored, 10));
+                } else {
+                    setDeadline();
+                }
+            }
             const now = new Date();
             let diff = Math.max(0, window.deadlineDate - now);
             const minutes = Math.floor(diff / 60000);
@@ -225,7 +253,7 @@
                 progressBar.style.width = `${percent * 100}%`;
             }
         }
-        setDeadline();
+        initDeadline();
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
