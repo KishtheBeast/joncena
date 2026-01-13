@@ -1,6 +1,6 @@
 :root {
-    --first: #f6bfc7;      /* QR border pink */
-    --stripone: #5a2dff;   /* left bar purple */
-    --striptwo: #3366b3;   /* middle bar blue */
-    --stripthree: #b98c6a; /* right bar brown */
+    --first: #f66a6a;      /* QR border red-pink */
+    --stripone: #3366b3;   /* left bar blue */
+    --striptwo: #6fc1a2;   /* middle bar green */
+    --stripthree: #7c3fdc; /* right bar purple */
 }
