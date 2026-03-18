@@ -1,6 +1,6 @@
 :root {
-    --first: #5BA154;      /* QR border green from screenshot */
-    --stripone: #39734C;   /* left bar dark green from screenshot */
-    --striptwo: #B3AAB9;   /* middle bar grayish purple from screenshot */
-    --stripthree: #A94A5A; /* right bar dark red from screenshot */
+    --first: #8B8B8B;      /* QR border gray from screenshot */
+    --stripone: #4F7FBF;   /* left bar blue from screenshot */
+    --striptwo: #C944C7;   /* middle bar magenta/purple from screenshot */
+    --stripthree: #5BA154; /* right bar green from screenshot */
 }
