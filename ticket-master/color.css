@@ -1,6 +1,6 @@
 :root {
-    --first: #4A90E2;      /* QR border bright blue from ticket */
-    --stripone: #4A5568;   /* left bar dark gray from ticket bottom */
-    --striptwo: #C8A2C8;   /* middle bar light purple/lavender from ticket */
-    --stripthree: #8B4513; /* right bar brown from ticket */
+    --first: #808080;      /* QR border muted gray from ticket */
+    --stripone: #6C5CE7;   /* left bar purple/blue from ticket bottom */
+    --striptwo: #00CEC9;   /* middle bar teal/cyan from ticket */
+    --stripthree: #E84393; /* right bar magenta/pink from ticket */
 }
