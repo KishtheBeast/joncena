@@ -32,25 +32,33 @@ bash gitpush.sh
 **Styling:**
 - `ticket-master/style.css` — all layout and component styles
 - `ticket-master/color.css` — CSS custom properties for theming; this is the only file that needs editing to change the color scheme:
-  - `--first` — blue used for QR code border
-  - `--stripone` — left color block in the strip bar
-  - `--striptwo` — middle color block in the strip bar
-  - `--stripthree` — right color block in the strip bar
+  - `--first` — QR code border color (can be any color — pink, blue, etc.)
+  - `--stripone` — leftmost color block in the bottom strip bar
+  - `--striptwo` — middle color block in the bottom strip bar
+  - `--stripthree` — rightmost color block in the bottom strip bar
 
 ## Updating Colors from an Image
 
-When the user provides a screenshot or image and says to match colors:
+When the user provides a screenshot or image and says to match colors, **do not read color.css first** — go straight to editing it. The file always has exactly these four variables.
 
-1. **Inspect the image carefully.** Identify the exact colors for each UI region:
-   - The blue used on the header bar and QR code border → `--first`
-   - The left segment of the bottom strip bar → `--stripone`
-   - The middle segment of the bottom strip bar → `--striptwo`
-   - The right segment of the bottom strip bar → `--stripthree`
+**Visual map of where each variable appears in the ticket screenshot:**
+```
+┌─────────────────────────────┐
+│        [header bar]         │  ← NOT controlled by color.css
+│  ┌──────────────────────┐   │
+│  │  [QR code border]    │   │  ← --first
+│  └──────────────────────┘   │
+│                             │
+│  [stripone][striptwo][stripthree]  ← bottom strip bar, left to right
+└─────────────────────────────┘
+```
 
-2. **Extract accurate hex values.** Do not guess approximate colors — study the hue, saturation, and brightness of each region in the image as precisely as possible. Avoid defaulting to generic color names (e.g. "purple" → `#800080`); derive the specific shade shown.
+**Workflow:**
+1. Look at the image. For each region above, identify its color.
+2. Derive an accurate hex value — study hue, saturation, and brightness precisely. Do not default to generic approximations (e.g. "green" → `#008000`).
+3. Edit `ticket-master/color.css` — update all four `--variable` values.
+4. All four variables must be updated every time, even if some look similar — confirm each one independently.
 
-3. **Edit only `ticket-master/color.css`.** Update the four `--variable` values. No other file needs to change for color updates.
-
-4. **All four variables must be updated** every time colors are changed from an image, even if some appear similar — confirm each one independently from the image.
+**Note:** The header bar color is NOT in color.css and does not need to change.
 
 **Fonts:** SF Pro Display Bold and Medium loaded from `ticket-master/` as local `.otf` files via `@font-face`.
