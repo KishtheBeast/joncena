@@ -58,6 +58,14 @@ When the user provides a screenshot or image and says to match colors, **do not 
 2. Derive an accurate hex value — study hue, saturation, and brightness precisely. Do not default to generic approximations (e.g. "green" → `#008000`).
 3. Edit `ticket-master/color.css` — update all four `--variable` values.
 4. All four variables must be updated every time, even if some look similar — confirm each one independently.
+5. **Verify with Playwright screenshot:**
+   - Run `python3 verify-colors.py` — it starts the server if needed and saves screenshots to `/tmp/ticket-index.png` and `/tmp/ticket-details.png`
+   - Read both screenshots and visually confirm QR border and strip bar colors match the target image
+   - If colors look wrong, re-examine the image, correct `color.css`, and run the script again
+6. Once colors are verified, commit and push:
+   ```
+   bash gitpush.sh
+   ```
 
 **Note:** The header bar color is NOT in color.css and does not need to change.
 
