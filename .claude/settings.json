@@ -5,7 +5,10 @@
       "Bash(python3 -m http.server 8000)",
       "Bash(lsof -ti:8000)",
       "Bash(bash gitpush.sh)",
-      "Bash(open /tmp/ticket-index.png /tmp/ticket-details.png)"
+      "Bash(open /tmp/ticket-index.png /tmp/ticket-details.png)",
+      "Read(/tmp/*.png)",
+      "Read(/tmp/*.jpg)",
+      "Read(/tmp/*.jpeg)"
     ]
   }
 }
